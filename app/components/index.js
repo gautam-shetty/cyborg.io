@@ -1,27 +1,24 @@
 import React, {Component} from 'react';
 import {
-  StyleSheet,
-  View,
-  TextInput,
-  Text,
-} from 'react-native';
+  createSwitchNavigator,
+  createStackNavigator,
+  createAppContainer
+} from 'react-navigation';
 import styles from './styles'
+import HomeScreen from './screens/HomeScreen'
+import LoginScreen from './screens/LoginScreen'
+import AuthLoadingScreen from './screens/AuthLoadingScreen'
 
-class Main extends Component {
-  render() {
-    return(
-      <View style={styles.container}>
-        <TextInput
-          placeholder="Phone Number"
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Name"
-          style={styles.input}
-        />
-      </View>
-    )
+const AppStack = createStackNavigator({ Home: HomeScreen });
+const AuthStack = createStackNavigator({ LogIn: LoginScreen });
+
+export default createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
   }
-}
-
-export default Main
+));
