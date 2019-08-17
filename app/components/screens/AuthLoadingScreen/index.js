@@ -1,17 +1,32 @@
 import React from 'react';
 import {
-  //AsyncStorage,
   ActivityIndicator,
   StatusBar,
   View,
 } from 'react-native';
-import User from '../../User'
+import firebase from 'firebase'
 import AsyncStorage from '@react-native-community/async-storage';
+import User from '../../User'
 
 export default class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
+  }
+
+  componentWillMount() {
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCKu0vBvnVPap-1lcCeoOhd-uJctX4ALxY",
+      authDomain: "cyborgio.firebaseapp.com",
+      databaseURL: "https://cyborgio.firebaseio.com",
+      projectId: "cyborgio",
+      storageBucket: "",
+      messagingSenderId: "982997113771",
+      appId: "1:982997113771:web:947c222933ee545c"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
   }
 
   // Fetch the token from storage then navigate to our appropriate place

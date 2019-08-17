@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import {
-  //AsyncStorage,
   View,
   Text,
   TouchableOpacity,
 } from 'react-native';
-import User from '../../User'
 import AsyncStorage from '@react-native-community/async-storage';
+import User from '../../User'
 import styles from './styles'
 
 class HomeScreen extends Component {
@@ -22,11 +21,11 @@ class HomeScreen extends Component {
 
   render() {
     return(
-      <View style={styles.container}>
+      <View style={ styles.container }>
         <Text>
           {User.phone}
         </Text>
-        <TouchableOpacity onPress={ this.logOut }>
+        <TouchableOpacity onPress={ this._logOut }>
           <Text> Logout </Text>
         </TouchableOpacity>
       </View>

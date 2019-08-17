@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {
-  //AsyncStorage,
   View,
   TextInput,
   Text,
   Alert,
   TouchableOpacity,
 } from 'react-native';
-import User from '../../User'
+import firebase from 'firebase'
 import AsyncStorage from '@react-native-community/async-storage';
+import User from '../../User'
 import styles from './styles'
 
 class LoginScreen extends Component {
@@ -34,6 +34,7 @@ class LoginScreen extends Component {
     } else {
       await AsyncStorage.setItem('userPhone',this.state.phone);
       User.phone=this.state.phone;
+      firebase.database().ref('users/'+ User.phone ).set({name: this.state.name })
       this.props.navigation.navigate('App');
     }
   }
