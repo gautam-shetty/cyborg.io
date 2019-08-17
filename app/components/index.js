@@ -8,8 +8,10 @@ import styles from './styles'
 import HomeScreen from './screens/HomeScreen'
 import LoginScreen from './screens/LoginScreen'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
+import ChatScreen from './screens/ChatScreen'
+import ProfileScreen from './screens/ProfileScreen'
 
-const AppStack = createStackNavigator({ Home: HomeScreen });
+const AppStack = createStackNavigator({ Home: HomeScreen, Chat: ChatScreen, Profile: ProfileScreen });
 const AuthStack = createStackNavigator({ LogIn: LoginScreen });
 
 export default createAppContainer(createSwitchNavigator(

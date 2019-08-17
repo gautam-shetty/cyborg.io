@@ -7,13 +7,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  input: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    width: '90%',
-    textAlign: 'center',
-    marginBottom: 10,
-    borderRadius: 55,
+  rowText: {
+    fontSize: 20,
   },
+  profileImage: {
+    width: 32,
+    height: 32,
+    marginRight: 7,
+  }
 })

@@ -1,34 +1,71 @@
 import React, { Component } from 'react'
 import {
+  SafeAreaView,
   View,
+  Image,
   Text,
+  FlatList,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import firebase from 'firebase'
 import User from '../../User'
 import styles from './styles'
 
 class HomeScreen extends Component {
 
-  static navigationOptions = {
-    title:'Chats'
+  static navigationOptions = ({navigation}) => {
+    return {
+      headerTitleStyle: { alignSelf: 'center' },
+      title: 'Chats',
+      headerRight: (
+        <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
+          <Image source={require('../../../assets/profile.png')} style = { styles.profileImage } />
+        </TouchableOpacity>
+      )
+    }
   }
 
-  _logOut=async()=>{
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
+  state = {
+    users: [],
+  }
+
+  componentDidMount() {
+    let debRef=firebase.database().ref('users')
+    debRef.on('child_added',(val)=> {
+      let person =val.val();
+      person.phone=val.key;
+      if (person.phone==User.phone) {     //to prevent displaying current user
+        User.name=person.name
+      } else {
+        this.setState((prevState)=>{
+          return{
+            users:  [...prevState.users, person]
+          }
+        })
+      }
+    })
+  }
+
+  renderRow=({item})=> {
+    return(
+      <TouchableOpacity
+        onPress={()=>this.props.navigation.navigate('Chat', item)}
+        //style={styles.rowButton}
+      >
+        <Text style={styles.rowText}>{item.name}</Text>
+      </TouchableOpacity>
+    )
   }
 
   render() {
     return(
-      <View style={ styles.container }>
-        <Text>
-          {User.phone}
-        </Text>
-        <TouchableOpacity onPress={ this._logOut }>
-          <Text> Logout </Text>
-        </TouchableOpacity>
-      </View>
+      <SafeAreaView>
+        <FlatList
+          data= {this.state.users}
+          renderItem={this.renderRow}
+          keyExtractor={(item)=>item.phone}
+        />
+      </SafeAreaView>
     );
   }
 
