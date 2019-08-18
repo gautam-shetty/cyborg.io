@@ -14,16 +14,16 @@ export default class AuthLoadingScreen extends React.Component {
     this._bootstrapAsync();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // Your web app's Firebase configuration
     var firebaseConfig = {
-      apiKey: "AIzaSyCKu0vBvnVPap-1lcCeoOhd-uJctX4ALxY",
+      apiKey: "",
       authDomain: "cyborgio.firebaseapp.com",
       databaseURL: "https://cyborgio.firebaseio.com",
       projectId: "cyborgio",
       storageBucket: "",
-      messagingSenderId: "982997113771",
-      appId: "1:982997113771:web:947c222933ee545c"
+      messagingSenderId: "",
+      appId: 
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);

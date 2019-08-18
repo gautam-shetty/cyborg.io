@@ -2,24 +2,27 @@ import React, { Component } from 'react'
 import {
   SafeAreaView,
   View,
-  Image,
   Text,
   FlatList,
   TouchableOpacity,
 } from 'react-native';
 import firebase from 'firebase'
 import User from '../../User'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './styles'
 
 class HomeScreen extends Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      headerTitleStyle: { alignSelf: 'center' },
       title: 'Chats',
+      headerTintColor: '#fff',
+      headerStyle: {
+        backgroundColor: '#00897b',
+      },
       headerRight: (
         <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
-          <Image source={require('../../../assets/profile.png')} style = { styles.profileImage } />
+          <Icon style = { styles.profileIcon } name="person" size={32} color="white"/>
         </TouchableOpacity>
       )
     }
@@ -50,9 +53,9 @@ class HomeScreen extends Component {
     return(
       <TouchableOpacity
         onPress={()=>this.props.navigation.navigate('Chat', item)}
-        //style={styles.rowButton}
+        style={styles.chatPerson}
       >
-        <Text style={styles.rowText}>{item.name}</Text>
+        <Text style={styles.chatPersonText}><Icon name="message" size={15} /> {item.name}</Text>
       </TouchableOpacity>
     )
   }

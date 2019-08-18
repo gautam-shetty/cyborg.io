@@ -10,6 +10,7 @@ export default StyleSheet.create({
     input: {
       padding: 10,
       borderWidth: 1,
+      fontSize: 20,
       borderColor: '#ccc',
       width: '60%',
       textAlign: 'center',
@@ -18,5 +19,9 @@ export default StyleSheet.create({
     },
     btnText: {
       fontSize: 20,
-    }
+    },
+    btnLogout: {
+      fontSize:20,
+      color: '#ff8585',
+    },
 })

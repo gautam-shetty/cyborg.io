@@ -6,18 +6,20 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     width: '85%',
-    marginBottom: 10,
+    marginBottom: 7,
+    marginLeft: 7,
     borderRadius: 10,
   },
-  chatView: {
+  chatFooter: {
+    marginTop: 7,
     flexDirection:'row',
     alignItems: 'center',
     marginHorizontal: 5,
   },
-  msgDate: {
+  msgData: {
     color: '#fff',
     padding: 7,
-    fontSize: 20
+    fontSize: 15
   },
   msgTime:{
     color: '#eee',

@@ -10,6 +10,7 @@ import {
 import firebase from 'firebase'
 import { FlatList } from 'react-native-gesture-handler'
 import User from '../../User'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './styles'
 
 class ChatScreen extends Component {
@@ -32,7 +33,7 @@ class ChatScreen extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     firebase.database().ref('messages').child(User.phone).child(this.state.person.phone).on('child_added', (value)=>{
       this.setState((prevState)=>{
         return{
@@ -84,7 +85,8 @@ class ChatScreen extends Component {
         width: '60%',
         alignSelf: item.from==User.phone ? 'flex-end' : 'flex-start',
         backgroundColor: item.from==User.phone ? '#00897b' : '#7cb342',
-        borderRadius:5,
+        padding:2,
+        borderRadius:9,
         marginBottom:10,
       }}>
         <Text style = { styles.msgData }>{item.message}</Text>
@@ -103,7 +105,7 @@ class ChatScreen extends Component {
           renderItem={this.renderRow}
           keyExtractor={(item,index)=>index.toString()}
         />
-        <View style={styles.chatView}>
+        <View style={styles.chatFooter}>
           <TextInput
             style={styles.input}
             value={this.state.textMessage}
@@ -111,7 +113,7 @@ class ChatScreen extends Component {
             onChangeText={this.handleChange('textMessage')}
           />
           <TouchableOpacity onPress={this.sendMessage} style = { styles.btnSend }>
-            <Text>Send</Text>
+            <Icon style = { styles.profileIcon } name="send" size={32} />
           </TouchableOpacity>
         </View>
       </SafeAreaView>

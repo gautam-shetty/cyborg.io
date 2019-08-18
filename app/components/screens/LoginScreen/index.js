@@ -27,7 +27,7 @@ class LoginScreen extends Component {
   }
 
   submitForm = async() => {
-    if(this.state.phone.length<10) {
+    if(this.state.phone.length!=10) {
       Alert.alert('Error','Incorrect Phone number')
     } else if(this.state.name.length<3) {
       Alert.alert('Error','Incorrect Name')

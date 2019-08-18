@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import {
   SafeAreaView,
+  View,
   Text,
+  Alert,
   TextInput,
   TouchableOpacity
 } from 'react-native';
 import firebase from 'firebase'
 import AsyncStorage from '@react-native-community/async-storage';
 import User from '../../User'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './styles'
 
 class ProfileScreen extends Component {
@@ -42,17 +45,19 @@ class ProfileScreen extends Component {
   render() {
     return(
       <SafeAreaView style={styles.container}>
-        <Text style={{fontSize:20}}>{User.phone}</Text>
-        <TextInput
-          style = { styles.input }
-          value={this.state.name}
-          onChangeText={this.handleChange('name')}
-        />
-        <TouchableOpacity onPress={this.changeName}>
-          <Text>Change Name</Text>
-        </TouchableOpacity>
+        <Text style={{fontSize:20, padding: 10 }}>Phone No.: {User.phone}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+          <TextInput
+            style = { styles.input }
+            value={this.state.name}
+            onChangeText={this.handleChange('name')}
+          />
+          <TouchableOpacity style={{ paddingBottom: 10, marginLeft: 10 }} onPress={this.changeName}>
+            <Icon name='check-circle' size={30} />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity onPress={this._logOut}>
-          <Text>Logout</Text>
+          <Text style = { styles.btnLogout }>Logout <Icon name='exit-to-app' size={24} /></Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
