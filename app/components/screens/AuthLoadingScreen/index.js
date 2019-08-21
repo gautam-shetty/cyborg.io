@@ -12,6 +12,7 @@ export default class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props);
     this._bootstrapAsync();
+    console.ignoredYellowBox = ['Setting a timer'];
   }
 
   componentDidMount() {

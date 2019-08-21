@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+  KeyboardAvoidingView,
   SafeAreaView,
   View,
   Dimensions,
@@ -31,6 +32,7 @@ class ChatScreen extends Component {
       textMessage: '',
       messageList:[],
     }
+    console.ignoredYellowBox = ['Setting a timer'];
   }
 
   componentDidMount() {
@@ -52,11 +54,11 @@ class ChatScreen extends Component {
   }
 
   convertTime = (time) => {
-    let d = new Date(time)
-    let c = new Date()
-    let result = (d.getDate()<10?'0':'')+d.getHours()+":";
-    result += (d.getMinutes()<10?'0':'')+d.getMinutes();
-    if(c.getDay()!==d.getDay()) {
+    let d = new Date(time);
+    let c = new Date();
+    let result = ( d.getHours() < 10 ? '0' : '') + d.getHours() + ":";
+    result += ( d.getMinutes() < 10 ? '0': '') + d.getMinutes();
+    if(c.getDay() !== d.getDay()) {
       result = d.getDay() + ' ' + d.getMonth() + ' ' + result;
     }
     return result
@@ -82,10 +84,9 @@ class ChatScreen extends Component {
     return(
       <View style={{
         flexDirection: 'row',
-        width: '60%',
         alignSelf: item.from==User.phone ? 'flex-end' : 'flex-start',
         backgroundColor: item.from==User.phone ? '#00897b' : '#7cb342',
-        padding:2,
+        paddingHorizontal:10,
         borderRadius:9,
         marginBottom:10,
       }}>
@@ -97,6 +98,7 @@ class ChatScreen extends Component {
 
   render() {
     let {height, width} = Dimensions.get('window');
+    const KEYBOARD_VERTICAL_OFFSET = Header.HEIGHT + StatusBar.currentHeight;
     return(
       <SafeAreaView>
         <FlatList

@@ -15,13 +15,9 @@ export default StyleSheet.create({
       width: '60%',
       textAlign: 'center',
       marginBottom: 10,
-      borderRadius: 10,
+      borderRadius: 55,
     },
     btnText: {
       fontSize: 20,
-    },
-    btnLogout: {
-      fontSize:20,
-      color: '#ff8585',
     },
 })

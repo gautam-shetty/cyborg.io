@@ -4,14 +4,22 @@ import {
   TextInput,
   Text,
   Alert,
+  Image,
   TouchableOpacity,
 } from 'react-native';
 import firebase from 'firebase'
 import AsyncStorage from '@react-native-community/async-storage';
+import { Input } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import User from '../../User'
 import styles from './styles'
 
 class LoginScreen extends Component {
+
+  constructor(props) {
+    super(props);
+    console.ignoredYellowBox = ['Setting a timer'];
+  }
 
   static navigationOptions = {
     header: null
@@ -27,7 +35,7 @@ class LoginScreen extends Component {
   }
 
   submitForm = async() => {
-    if(this.state.phone.length!=10) {
+    if(this.state.phone.length<10) {
       Alert.alert('Error','Incorrect Phone number')
     } else if(this.state.name.length<3) {
       Alert.alert('Error','Incorrect Name')
@@ -42,21 +50,32 @@ class LoginScreen extends Component {
   render() {
     return(
       <View style={styles.container}>
-        <TextInput
+        <Text style = { styles.loginHeader }><Image style={{width: 50, height: 50, marginRight: 40 }} source={require('../../../assets/logoMain.png')} />cyborg.io</Text>
+        <Input
           placeholder="Phone Number"
+          maxLength={10}
+          leftIcon={{ type: 'MaterialIcons', name: 'phone', size:24 , color: '#9c9c9c', paddingRight:10 }}
+          autofillHints='off'
           keyboardType='number-pad'
-          style={styles.input}
+          containerStyle={styles.input}
+          inputContainerStyle={{borderBottomWidth: 0}}
           value={this.state.phone}
           onChangeText={this.handleChange('phone')}
         />
-        <TextInput
+        <Input
           placeholder="Name"
-          style={styles.input}
+          leftIcon={{ type: 'MaterialIcons', name: 'face', size:24, color: '#9c9c9c', paddingRight:10  }}
+          autofillHints='off'
+          containerStyle={styles.input}
+          inputContainerStyle={{borderBottomWidth: 0}}
           value={this.state.name}
           onChangeText={this.handleChange('name')}
         />
-        <TouchableOpacity onPress={this.submitForm}>
-          <Text style={styles.btnText}>Enter</Text>
+        <TouchableOpacity style = { styles.btnLogin } onPress={this.submitForm}>
+          <Text style={styles.btnText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style = { styles.btnReg }>
+          <Text style={styles.btnText}>Register</Text>
         </TouchableOpacity>
       </View>
     )

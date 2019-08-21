@@ -7,14 +7,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  chatPerson: {
-    padding: 12,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
-  },
-  chatPersonText: {
-    fontSize: 17,
-  },
   profileIcon: {
     marginRight: 7,
   }
